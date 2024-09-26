@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "757057358375",
+    "project_id": "ayaintel-assignment",
+    "storage_bucket": "ayaintel-assignment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757057358375:android:37d98e53aea3f5e76b5c02",
+        "android_client_info": {
+          "package_name": "com.example.ayaintel_assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJf43bJ7isfup18ZOdG6kiktf2xSaIJxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
