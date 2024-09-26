@@ -1,0 +1,1 @@
+const kUserCollection = 'users';

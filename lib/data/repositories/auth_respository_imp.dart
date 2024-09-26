@@ -1,16 +1,16 @@
-import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../data_sources/auth_data_source.dart';
 
-class AuthRespositoryImp implements AuthRepository {
-  AuthRespositoryImp();
+class AuthRepositoryImp implements AuthRepository {
+  AuthRepositoryImp({required this.authDataSource});
 
-  @override
-  Future<UserEntity> signInWithEmailPassword(String email, String password) {
-    throw UnimplementedError();
-  }
+  final AuthDataSource authDataSource;
 
   @override
-  Future<UserEntity> signUpWithEmailPassword(String email, String password) {
-    throw UnimplementedError();
-  }
+  Future<String> signInWithEmailPassword(String email, String password) async =>
+      authDataSource.signInWithEmailPassword(email, password);
+
+  @override
+  Future<String> signUpWithEmailPassword(String email, String password) async =>
+      authDataSource.signUpWithEmailPassword(email, password);
 }

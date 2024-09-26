@@ -6,7 +6,7 @@ part 'user_entity.g.dart';
 @CopyWith()
 class UserEntity extends Equatable {
   const UserEntity({
-    required this.id,
+    this.id,
     this.firstname,
     this.lastname,
     this.email,
@@ -19,7 +19,7 @@ class UserEntity extends Equatable {
     this.grades,
   });
 
-  final String id;
+  final String? id;
   final String? firstname;
   final String? lastname;
   final String? email;
