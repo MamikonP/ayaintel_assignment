@@ -27,7 +27,9 @@ abstract class _$UserEntityCWProxy {
 
   UserEntity subjects(List<String>? subjects);
 
-  UserEntity grades(List<int>? grades);
+  UserEntity grades(List<String>? grades);
+
+  UserEntity signUpType(SignUpType signUpType);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -46,7 +48,8 @@ abstract class _$UserEntityCWProxy {
     String? city,
     String? school,
     List<String>? subjects,
-    List<int>? grades,
+    List<String>? grades,
+    SignUpType? signUpType,
   });
 }
 
@@ -87,7 +90,10 @@ class _$UserEntityCWProxyImpl implements _$UserEntityCWProxy {
   UserEntity subjects(List<String>? subjects) => this(subjects: subjects);
 
   @override
-  UserEntity grades(List<int>? grades) => this(grades: grades);
+  UserEntity grades(List<String>? grades) => this(grades: grades);
+
+  @override
+  UserEntity signUpType(SignUpType signUpType) => this(signUpType: signUpType);
 
   @override
 
@@ -109,6 +115,7 @@ class _$UserEntityCWProxyImpl implements _$UserEntityCWProxy {
     Object? school = const $CopyWithPlaceholder(),
     Object? subjects = const $CopyWithPlaceholder(),
     Object? grades = const $CopyWithPlaceholder(),
+    Object? signUpType = const $CopyWithPlaceholder(),
   }) {
     return UserEntity(
       id: id == const $CopyWithPlaceholder()
@@ -154,7 +161,12 @@ class _$UserEntityCWProxyImpl implements _$UserEntityCWProxy {
       grades: grades == const $CopyWithPlaceholder()
           ? _value.grades
           // ignore: cast_nullable_to_non_nullable
-          : grades as List<int>?,
+          : grades as List<String>?,
+      signUpType:
+          signUpType == const $CopyWithPlaceholder() || signUpType == null
+              ? _value.signUpType
+              // ignore: cast_nullable_to_non_nullable
+              : signUpType as SignUpType,
     );
   }
 }

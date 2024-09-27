@@ -1,6 +1,8 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../core/enums/sign_up_type.dart';
+
 part 'user_entity.g.dart';
 
 @CopyWith()
@@ -17,6 +19,7 @@ class UserEntity extends Equatable {
     this.school,
     this.subjects,
     this.grades,
+    this.signUpType = SignUpType.teacher,
   });
 
   final String? id;
@@ -29,7 +32,8 @@ class UserEntity extends Equatable {
   final String? city;
   final String? school;
   final List<String>? subjects;
-  final List<int>? grades;
+  final List<String>? grades;
+  final SignUpType signUpType;
 
   @override
   List<Object?> get props => [

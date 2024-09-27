@@ -33,9 +33,11 @@ class DefaultDecoration extends InputDecoration {
       !outlined ? InputBorder.none : _outlineInputBorder;
 
   @override
-  TextStyle? get errorStyle => AppTheme.currentThemeOf(context)
-      .bodyText1
-      .copyWith(color: AppTheme.currentThemeOf(context).error);
+  TextStyle? get errorStyle =>
+      AppTheme.currentThemeOf(context).bodyText2.copyWith(
+            color: AppTheme.currentThemeOf(context).error,
+            fontWeight: AppTextFontWeight.normal.fontWeight,
+          );
 
   @override
   InputBorder? get errorBorder => !outlined

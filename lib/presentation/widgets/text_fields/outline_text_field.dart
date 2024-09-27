@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 
 import '../../../core/constants/gaps.dart';
 import '../../../core/constants/ui_constants.dart';
+import '../../../core/enums/app_text_font_weight.dart';
+import '../../../core/extensions/app_text_font_weight_values.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../widgets.dart';
@@ -95,7 +97,6 @@ class OutlineTextField extends StatefulWidget {
 
 class _OutlineTextFieldState extends State<OutlineTextField> {
   final FocusNode _focusNode = FocusNode();
-  bool _focused = false;
   late final TextEditingController _controller;
   bool obscure = false;
 
@@ -104,13 +105,6 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
     super.initState();
     _controller = widget.controller ?? TextEditingController();
     obscure = widget.obscure;
-    if (widget.focusNode == null) {
-      _focusNode.addListener(() {
-        setState(() {
-          _focused = _focusNode.hasFocus;
-        });
-      });
-    }
   }
 
   @override
@@ -162,7 +156,6 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
   }
 
   InputDecoration _decoration(BuildContext context) {
-    final String? text = _focused ? null : widget.hintText ?? widget.labelText;
     return DefaultDecoration.of(context,
             outlined: widget.outlined,
             borderRadius: widget.borderRadius,
@@ -171,7 +164,8 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
       filled: widget.filledColor != null,
       fillColor: widget.filledColor,
       isDense: true,
-      hintText: text,
+      hintText: widget.hintText,
+      labelText: widget.labelText,
       hintStyle: AppTheme.currentThemeOf(context).bodyText1,
       counterText: '',
       suffixIcon: widget.obscure

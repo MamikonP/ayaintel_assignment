@@ -20,5 +20,24 @@
   "lblCheckEmail": "Please check your email and enter the recovery code",
   "btnOK": "Ok",
   "btnRegisterDonor": "Register as a Donor",
-  "btnRegisterTeacher": "Register as a Teacher"
+  "btnRegisterTeacher": "Register as a Teacher",
+  "@_ERROR_MESSAGES": {},
+  "errorFieldRequired": "This field is required",
+  "errorSpecifiedFieldRequired": "{field} is required",
+  "@errorSpecifiedFieldRequired": {
+    "description": "Specific field",
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "errorInvalidFirstName": "Name is not correct",
+  "errorInvalidSurname": "Surname is not correct",
+  "errorInvalidEmail": "Email is not correct",
+  "errorInvalidPhoneNumber": "Phone Number is not correct",
+  "errorInvalidRegion": "Region is not correct",
+  "errorInvalidCity": "City is not correct",
+  "errorInvalidPassword": "Password is not correct",
+  "errorPasswordDontMatch": "Passwords don't not match"
 }

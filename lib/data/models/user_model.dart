@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../core/enums/sign_up_type.dart';
 import '../../domain/entities/user_entity.dart';
 
 part 'user_model.g.dart';
@@ -18,6 +19,7 @@ class UserModel extends UserEntity {
     super.school,
     super.subjects,
     super.grades,
+    super.signUpType,
   });
 
   factory UserModel.fromEntity(UserEntity entity) => UserModel(
@@ -32,6 +34,7 @@ class UserModel extends UserEntity {
         school: entity.school,
         subjects: entity.subjects,
         grades: entity.grades,
+        signUpType: entity.signUpType
       );
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -50,5 +53,6 @@ class UserModel extends UserEntity {
         school: school,
         subjects: subjects,
         grades: grades,
+        signUpType: signUpType,
       );
 }

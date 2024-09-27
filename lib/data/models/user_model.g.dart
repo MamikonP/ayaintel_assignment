@@ -19,9 +19,11 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       subjects: (json['subjects'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      grades: (json['grades'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
-          .toList(),
+      grades:
+          (json['grades'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      signUpType:
+          $enumDecodeNullable(_$SignUpTypeEnumMap, json['signUpType']) ??
+              SignUpType.teacher,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -36,4 +38,10 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'school': instance.school,
       'subjects': instance.subjects,
       'grades': instance.grades,
+      'signUpType': _$SignUpTypeEnumMap[instance.signUpType]!,
     };
+
+const _$SignUpTypeEnumMap = {
+  SignUpType.donor: 'donor',
+  SignUpType.teacher: 'teacher',
+};
