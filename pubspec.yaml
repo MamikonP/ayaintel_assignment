@@ -21,7 +21,13 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_country_selector: ^1.0.12
+  flutter_localization: ^0.2.2
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^2.0.10+1
   json_annotation: ^4.9.0
+  phone_form_field: ^9.2.7
   uuid: ^4.5.0
 
 dev_dependencies:
@@ -32,4 +38,27 @@ dev_dependencies:
   json_serializable: ^6.8.0
 
 flutter:
+  generate: true
   uses-material-design: true
+
+  assets:
+    - assets/fonts/
+    - assets/icons/
+
+  fonts:
+    - family: Assistant
+      fonts:
+        - asset: assets/fonts/Assistant-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Assistant-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Assistant-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Assistant-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Assistant-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Assistant-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Assistant-ExtraBold.ttf
+          weight: 800

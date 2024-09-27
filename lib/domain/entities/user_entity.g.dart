@@ -7,7 +7,7 @@ part of 'user_entity.dart';
 // **************************************************************************
 
 abstract class _$UserEntityCWProxy {
-  UserEntity id(String id);
+  UserEntity id(String? id);
 
   UserEntity firstname(String? firstname);
 
@@ -57,7 +57,7 @@ class _$UserEntityCWProxyImpl implements _$UserEntityCWProxy {
   final UserEntity _value;
 
   @override
-  UserEntity id(String id) => this(id: id);
+  UserEntity id(String? id) => this(id: id);
 
   @override
   UserEntity firstname(String? firstname) => this(firstname: firstname);
@@ -111,10 +111,10 @@ class _$UserEntityCWProxyImpl implements _$UserEntityCWProxy {
     Object? grades = const $CopyWithPlaceholder(),
   }) {
     return UserEntity(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : id as String,
+          : id as String?,
       firstname: firstname == const $CopyWithPlaceholder()
           ? _value.firstname
           // ignore: cast_nullable_to_non_nullable

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../core/extensions/context_extension.dart';
+
 Future<T?> showPopup<T>(
   BuildContext context,
   Widget builder, {
   bool dismissible = true,
-  bool scrollable = false,
-  bool enableDrag = false,
-  bool materialWidget = false,
+  bool isScrollControlled = false,
   EdgeInsets padding = EdgeInsets.zero,
   BorderRadius? borderRadius,
   double? height,
@@ -14,7 +14,7 @@ Future<T?> showPopup<T>(
   return showModalBottomSheet<T>(
     context: context,
     isDismissible: dismissible,
-    isScrollControlled: scrollable,
+    isScrollControlled: isScrollControlled,
     shape: RoundedRectangleBorder(
       borderRadius: borderRadius ??
           const BorderRadius.only(
@@ -25,9 +25,11 @@ Future<T?> showPopup<T>(
     builder: (_) {
       return Container(
         height: height,
+        width: context.deviceFullWidth(),
         padding: padding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Flexible(child: builder),
           ],
