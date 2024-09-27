@@ -73,6 +73,8 @@ class AppThemeData {
         scaffoldBackgroundColor: DarkModeTheme().background,
         colorScheme: DarkModeTheme().colorScheme,
         appBarTheme: AppBarTheme(backgroundColor: DarkModeTheme().primary),
+        bottomSheetTheme:
+            BottomSheetThemeData(dragHandleColor: DarkModeTheme().primary),
         fontFamily: 'Assistant',
         useMaterial3: true,
       );
@@ -81,6 +83,8 @@ class AppThemeData {
         scaffoldBackgroundColor: LightModeTheme().background,
         colorScheme: LightModeTheme().colorScheme,
         appBarTheme: AppBarTheme(backgroundColor: LightModeTheme().primary),
+        bottomSheetTheme:
+            BottomSheetThemeData(dragHandleColor: LightModeTheme().primary),
         fontFamily: 'Assistant',
         useMaterial3: true,
       );

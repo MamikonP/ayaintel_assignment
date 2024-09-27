@@ -1,0 +1,49 @@
+{
+  "lblQuickEasy": "Հեշտ է և արագ",
+  "lblWelcome": "Բարի Գալուստ!",
+  "lblNextGeneration": "Հաջորդ Սերունդ",
+  "lblSignUp": "Գրանցվել",
+  "lblSignIn": "Մուտք գործել",
+  "lblName": "Անուն",
+  "lblSurname": "Surname",
+  "lblEmail": "Էլ. Հասցե",
+  "lblPhoneNumber": "Հեռախոսահամար",
+  "lblRegion": "Տարածաշրջան",
+  "lblCity": "Քաղաք",
+  "lblSchool": "Դպրոց",
+  "lblSubject": "Առարկա",
+  "lblGrade": "Մակարդակ",
+  "lblPassword": "Գաղտնաբառ",
+  "lblCode": "Կոդ",
+  "lblSearch": "Որոնում",
+  "lblHomePage": "Գլխավոր էջ",
+  "lblTeachers": "Ուսուցիչներ",
+  "lblDonors": "Դոնորներ",
+  "lblAbout": "Մեր մասին",
+  "lblContact": "Կապ մեզ հետ",
+  "lblBlog": "Բլոգ",
+  "lblConfirmPassword": "Հաստատել գաղտնաբառը",
+  "lblRegisterAs": "Գրանցվել որպես",
+  "btnOK": "Լավ",
+  "btnRegisterDonor": "Գրանցվել որպես դոնոր",
+  "btnRegisterTeacher": "Գրանցվել որպես ուսուցիչ",
+  "@_ERROR_MESSAGES": {},
+  "errorFieldRequired": "Այս դաշտը պարտադիր է",
+  "errorSpecifiedFieldRequired": "{field} դաշտը պարտադիր է",
+  "@errorSpecifiedFieldRequired": {
+    "description": "Specific field",
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "errorInvalidFirstName": "Անունը ճիշտ չէ",
+  "errorInvalidSurname": "Ազգանունը ճիշտ չէ",
+  "errorInvalidEmail": "Էլ. Փոստը չիշտ չէ",
+  "errorInvalidPhoneNumber": "Հեռախոսահամարը ճիշտ չէ",
+  "errorInvalidRegion": "Տարածաշրջանը ճիշտ չէ",
+  "errorInvalidCity": "Քաղաքը ճիշտ չէ",
+  "errorInvalidPassword": "Գաղտնաբառը ճիշտ չէ",
+  "errorPasswordDontMatch": "Գաղտնաբառերը չեն համընկնում"
+}

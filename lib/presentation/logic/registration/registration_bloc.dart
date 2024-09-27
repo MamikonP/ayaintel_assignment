@@ -18,6 +18,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     on<UpdateSubjectEvent>(_mapUpdateSubjectEventToState);
     on<UpdateGradeEvent>(_mapUpdateGradeEventToState);
     on<UpdatePasswordEvent>(_mapUpdatePasswordEventToState);
+    on<UpdateConfirmPasswordEvent>(_mapUpdateConfirmPasswordEventToState);
   }
 
   FutureOr<void> _mapUpdateFirstNameEventToState(
@@ -68,6 +69,11 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
 
   FutureOr<void> _mapUpdatePasswordEventToState(
       UpdatePasswordEvent event, Emitter<RegistrationState> emit) {
+    emit(RegistrationUpdated(state, password: event.password));
+  }
+
+  FutureOr<void> _mapUpdateConfirmPasswordEventToState(
+      UpdateConfirmPasswordEvent event, Emitter<RegistrationState> emit) {
     emit(RegistrationUpdated(state, confirmPassword: event.password));
   }
 }

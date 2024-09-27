@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/ui_constants.dart';
 import '../../core/extensions/context_extension.dart';
 
 Future<T?> showPopup<T>(
@@ -15,11 +16,12 @@ Future<T?> showPopup<T>(
     context: context,
     isDismissible: dismissible,
     isScrollControlled: isScrollControlled,
+    showDragHandle: true,
     shape: RoundedRectangleBorder(
       borderRadius: borderRadius ??
           const BorderRadius.only(
-            topLeft: Radius.circular(5),
-            topRight: Radius.circular(5),
+            topLeft: Radius.circular(kBorderRadius * 2),
+            topRight: Radius.circular(kBorderRadius * 2),
           ),
     ),
     builder: (_) {

@@ -4,45 +4,78 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/enums/sign_up_type.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/themes/app_theme.dart';
 import '../../../l10n/l10n.dart';
 import '../../logic/auth/auth_bloc.dart';
 import '../../logic/registration/registration_bloc.dart';
 import '../../shared/validator.dart';
 import '../../widgets.dart';
 
-mixin _Controllers {
-  final nameController = TextEditingController();
-  final surnameController = TextEditingController();
-  final emailController = TextEditingController();
-  final regionController = TextEditingController();
-  final cityController = TextEditingController();
-  final schoolController = TextEditingController();
-  final subjectController = TextEditingController();
-  final gradeController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
-  final nameFormKey = GlobalKey<FormFieldState<dynamic>>();
-  final surnameFormKey = GlobalKey<FormFieldState<dynamic>>();
-  final emailFormKey = GlobalKey<FormFieldState<dynamic>>();
-  final passwordFormKey = GlobalKey<FormFieldState<dynamic>>();
-  final confirmPasswordFormKey = GlobalKey<FormFieldState<dynamic>>();
-}
-
 class SignUpContent extends StatefulWidget {
-  const SignUpContent({super.key, this.signUpType = SignUpType.teacher});
+  const SignUpContent(
+      {super.key,
+      this.signUpType = SignUpType.teacher,
+      this.onLargeScaleDevice = false});
 
   final SignUpType signUpType;
+  final bool onLargeScaleDevice;
 
   @override
   State<SignUpContent> createState() => _SignUpContentState();
 }
 
 class _SignUpContentState extends State<SignUpContent>
-    with _Controllers, AutomaticKeepAliveClientMixin {
+    with AuthController, AutomaticKeepAliveClientMixin {
+  SignUpType signUpType = SignUpType.teacher;
+
+  @override
+  void initState() {
+    super.initState();
+    signUpType = widget.signUpType;
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final authButtons = [
+      BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          return AppButton(
+            title: L10n.of(context).tr.btnOK,
+            busy: state is AuthLoading,
+            onTap: () {
+              if (formKey.currentState?.validate() == true) {
+                context.read<AuthBloc>().add(
+                      SignUpWithEmailPasswordEvent(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      ),
+                    );
+              }
+            },
+          );
+        },
+      ),
+      kLarge.v,
+      TextButton(
+        child: Text(
+          signUpType == SignUpType.donor
+              ? L10n.of(context).tr.btnRegisterTeacher
+              : L10n.of(context).tr.btnRegisterDonor,
+        ),
+        onPressed: () {
+          if (signUpType == SignUpType.donor) {
+            setState(() {
+              signUpType = SignUpType.teacher;
+            });
+          } else {
+            setState(() {
+              signUpType = SignUpType.donor;
+            });
+          }
+        },
+      ),
+    ];
     return Padding(
       padding: kLarge.all,
       child: Form(
@@ -50,6 +83,16 @@ class _SignUpContentState extends State<SignUpContent>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text(
+              L10n.of(context).tr.lblSignUp,
+              style: AppTheme.currentThemeOf(context).title1,
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              L10n.of(context).tr.lblQuickEasy,
+              style: AppTheme.currentThemeOf(context).subtitle1,
+              textAlign: TextAlign.center,
+            ),
             kLarge.v,
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,39 +175,41 @@ class _SignUpContentState extends State<SignUpContent>
               onChanged: (value) =>
                   context.read<RegistrationBloc>().add(UpdateCityEvent(value)),
             ),
-            kLarge.v,
-            OutlineDropDownField(
-              hintText: L10n.of(context).tr.lblSchool,
-              options: ['1', '2'],
-              label: 'School',
-              controller: schoolController,
-              validator: Validator.of(context).validateEmptyField,
-              onChanged: (value) => context
-                  .read<RegistrationBloc>()
-                  .add(UpdateSchoolEvent(value)),
-            ),
-            kLarge.v,
-            OutlineDropDownField(
-              hintText: L10n.of(context).tr.lblSubject,
-              options: ['1', '2'],
-              label: 'Subject',
-              controller: subjectController,
-              validator: Validator.of(context).validateEmptyField,
-              onChanged: (value) => context
-                  .read<RegistrationBloc>()
-                  .add(UpdateSubjectEvent([value ?? ''])),
-            ),
-            kLarge.v,
-            OutlineDropDownField(
-              hintText: L10n.of(context).tr.lblGrade,
-              options: ['1', '2'],
-              label: 'Grade',
-              controller: gradeController,
-              validator: Validator.of(context).validateEmptyField,
-              onChanged: (value) => context
-                  .read<RegistrationBloc>()
-                  .add(UpdateGradeEvent([value ?? '1'])),
-            ),
+            if (signUpType == SignUpType.teacher) ...[
+              kLarge.v,
+              OutlineDropDownField(
+                hintText: L10n.of(context).tr.lblSchool,
+                options: ['1', '2'],
+                label: 'School',
+                controller: schoolController,
+                validator: Validator.of(context).validateEmptyField,
+                onChanged: (value) => context
+                    .read<RegistrationBloc>()
+                    .add(UpdateSchoolEvent(value)),
+              ),
+              kLarge.v,
+              OutlineDropDownField(
+                hintText: L10n.of(context).tr.lblSubject,
+                options: ['1', '2'],
+                label: 'Subject',
+                controller: subjectController,
+                validator: Validator.of(context).validateEmptyField,
+                onChanged: (value) => context
+                    .read<RegistrationBloc>()
+                    .add(UpdateSubjectEvent([value ?? ''])),
+              ),
+              kLarge.v,
+              OutlineDropDownField(
+                hintText: L10n.of(context).tr.lblGrade,
+                options: ['1', '2'],
+                label: 'Grade',
+                controller: gradeController,
+                validator: Validator.of(context).validateEmptyField,
+                onChanged: (value) => context
+                    .read<RegistrationBloc>()
+                    .add(UpdateGradeEvent([value ?? '1'])),
+              ),
+            ],
             kLarge.v,
             OutlineTextField.formField(
               labelText: L10n.of(context).tr.lblPassword,
@@ -195,29 +240,14 @@ class _SignUpContentState extends State<SignUpContent>
               },
             ),
             kExtraLarge.v,
-            BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                return AppButton(
-                  title: L10n.of(context).tr.btnOK,
-                  busy: state is AuthLoading,
-                  onTap: () {
-                    if (formKey.currentState?.validate() == true) {
-                      context.read<AuthBloc>().add(
-                            SignUpWithEmailPasswordEvent(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            ),
-                          );
-                    }
-                  },
-                );
-              },
-            ),
-            kLarge.v,
-            TextButton(
-              child: Text(L10n.of(context).tr.btnRegisterDonor),
-              onPressed: () {},
-            ),
+            if (widget.onLargeScaleDevice)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: authButtons.reversed.toList(),
+              )
+            else
+              ...authButtons
           ],
         ),
       ),

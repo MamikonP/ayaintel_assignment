@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/router/app_router.dart';
 import 'core/themes/app_theme.dart';
+import 'l10n/l10n.dart';
 import 'presentation/logic/locale/locale_cubit.dart';
 
 class App extends StatelessWidget {
@@ -21,6 +22,8 @@ class App extends StatelessWidget {
           theme: AppThemeData().darkTheme,
           darkTheme: AppThemeData().darkTheme,
           locale: state.locale,
+          supportedLocales: L10n.locales,
+          localeResolutionCallback: L10n.localeResolutionCallback,
           localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

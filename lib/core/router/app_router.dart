@@ -10,10 +10,9 @@ abstract class AppRouter {
       {dynamic arguments}) {
     switch (settings.name) {
       case kSignInRoute:
-        return SignUpRoute<dynamic>();
-        // return SignInRoute<dynamic>(); TODO: change
+        return SignInRoute<dynamic>(settings: settings);
       case kSignUpRoute:
-        return SignUpRoute<dynamic>();
+        return SignUpRoute<dynamic>(settings: settings);
       default:
         throw Exception('Route not found!');
     }

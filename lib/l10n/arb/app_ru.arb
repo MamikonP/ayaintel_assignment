@@ -1,0 +1,49 @@
+{
+  "lblQuickEasy": "Это быстро и просто.",
+  "lblWelcome": "С возвращением!",
+  "lblNextGeneration": "Поколение",
+  "lblSignUp": "Зарегистрироваться",
+  "lblSignIn": "Войти",
+  "lblName": "Имя",
+  "lblSurname": "Фамилия",
+  "lblEmail": "Электронная почта",
+  "lblPhoneNumber": "Номер телефона",
+  "lblRegion": "Регион",
+  "lblCity": "Город",
+  "lblSchool": "Школа",
+  "lblSubject": "Тема",
+  "lblGrade": "Уровень класса",
+  "lblPassword": "Пароль",
+  "lblCode": "Код",
+  "lblSearch": "Поиск",
+  "lblHomePage": "Главная страница",
+  "lblTeachers": "Учителя",
+  "lblDonors": "Доноры",
+  "lblAbout": "О нас",
+  "lblContact": "Связаться с нами",
+  "lblBlog": "Блог",
+  "lblConfirmPassword": "Подтвердить пароль",
+  "lblRegisterAs": "Зарегистрироваться как",
+  "btnOK": "ОК",
+  "btnRegisterDonor": "Зарегистрироваться как донор",
+  "btnRegisterTeacher": "Зарегистрироваться как учитель",
+  "@_ERROR_MESSAGES": {},
+  "errorFieldRequired": "Это поле обязательно",
+  "errorSpecifiedFieldRequired": "{field} обязательно",
+  "@errorSpecifiedFieldRequired": {
+    "description": "Конкретное поле",
+    "placeholders": {
+      "field": {
+        "type": "Строка"
+      }
+    }
+  },
+  "errorInvalidFirstName": "Имя неверно",
+  "errorInvalidSurname": "Фамилия неверно",
+  "errorInvalidEmail": "Email неверно",
+  "errorInvalidPhoneNumber": "Номер телефона неверно",
+  "errorInvalidRegion": "Регион неверно",
+  "errorInvalidCity": "Город неверно",
+  "errorInvalidPassword": "Пароль неверно",
+  "errorPasswordDontMatch": "Пароли не совпадают"
+}

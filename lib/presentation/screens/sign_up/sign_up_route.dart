@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/enums/sign_up_type.dart';
 import '../../logic/auth/auth_bloc.dart';
 import '../../logic/registration/registration_bloc.dart';
 import '../../screens.dart';
@@ -22,7 +23,9 @@ class SignUpRoute<T> extends PageRoute<T> with MaterialRouteTransitionMixin<T> {
           create: (context) => RegistrationBloc(),
         ),
       ],
-      child: const SignUpScreen(),
+      child: SignUpScreen(
+        signUpType: settings.arguments as SignUpType? ?? SignUpType.teacher,
+      ),
     );
   }
 
