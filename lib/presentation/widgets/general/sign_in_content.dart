@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/constants.dart';
-import '../../../core/constants/gaps.dart';
-import '../../../core/constants/ui_constants.dart';
 import '../../../core/enums/sign_up_type.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_theme.dart';
@@ -11,7 +10,6 @@ import '../../../l10n/l10n.dart';
 import '../../logic/auth/auth_bloc.dart';
 import '../../shared/validator.dart';
 import '../../widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class _RegisterButton extends StatelessWidget {
   const _RegisterButton({required this.title, required this.onTap});
@@ -21,13 +19,16 @@ class _RegisterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Card(
-        shadowColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
-        color: AppTheme.currentThemeOf(context).greyScaleLight,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        hoverColor: AppTheme.currentThemeOf(context).borderColor.withAlpha(5),
+        splashColor: AppTheme.currentThemeOf(context).greyScaleLight,
+        radius: 2,
+        borderRadius: BorderRadius.circular(kBorderRadius),
         child: Container(
+          margin: kSmallest.all,
           decoration: BoxDecoration(
             color: AppTheme.currentThemeOf(context).greyScaleLight,
             borderRadius: BorderRadius.circular(kBorderRadius),
@@ -57,11 +58,9 @@ class _RegisterButton extends StatelessWidget {
 class SignInContent extends StatefulWidget {
   const SignInContent({
     super.key,
-    this.signUpType = SignUpType.teacher,
     this.onLargeScaleDevice = false,
   });
 
-  final SignUpType signUpType;
   final bool onLargeScaleDevice;
 
   @override
@@ -69,7 +68,7 @@ class SignInContent extends StatefulWidget {
 }
 
 class _SignInContentState extends State<SignInContent>
-    with AuthController, AutomaticKeepAliveClientMixin {
+    with AuthControllerMixin, AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -147,7 +146,7 @@ class _SignInContentState extends State<SignInContent>
                     children: [
                       Expanded(
                         child: _RegisterButton(
-                          title: 'Teacher',
+                          title: L10n.of(context).tr.lblTeacher,
                           onTap: () {
                             Navigator.pushReplacementNamed(
                               context,
@@ -159,7 +158,7 @@ class _SignInContentState extends State<SignInContent>
                       kLarge.h,
                       Expanded(
                         child: _RegisterButton(
-                          title: 'Donor',
+                          title: L10n.of(context).tr.lblDonor,
                           onTap: () {
                             Navigator.pushReplacementNamed(
                               context,

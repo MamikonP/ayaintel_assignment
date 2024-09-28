@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/gaps.dart';
+import '../../../core/constants.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../widgets.dart';

@@ -1,4 +1,4 @@
-import '../../core/constants/aliases.dart';
+import '../../core/constants.dart';
 import '../../core/exceptions/api_exception.dart';
 import '../models/user_model.dart';
 import 'remote/firebase/firebase_data_source.dart';

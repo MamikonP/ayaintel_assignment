@@ -34,7 +34,7 @@ class DefaultDecoration extends InputDecoration {
 
   @override
   TextStyle? get errorStyle =>
-      AppTheme.currentThemeOf(context).bodyText2.copyWith(
+      AppTheme.currentThemeOf(context).bodyText3.copyWith(
             color: AppTheme.currentThemeOf(context).error,
             fontWeight: AppTextFontWeight.normal.fontWeight,
           );

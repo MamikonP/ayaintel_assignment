@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_country_selector/flutter_country_selector.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
-import '../../../core/constants/gaps.dart';
-import '../../../core/constants/ui_constants.dart';
+import '../../../core/constants.dart';
 import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_theme.dart';
@@ -71,17 +70,26 @@ class _PhoneFieldState extends State<PhoneField> {
             ),
             textInputAction: widget.textInputAction,
             decoration: DefaultDecoration.of(context).copyWith(
+              contentPadding: EdgeInsets.zero,
               prefixIcon: Container(
                 margin: kMedium.right,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(kBorderRadius),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(kBorderRadius),
+                    bottomLeft: Radius.circular(kBorderRadius),
+                  ),
+                  border: Border(
+                    right: BorderSide(
+                        width: kBorderWidth,
+                        color: AppTheme.currentThemeOf(context).borderColor),
+                  ),
                 ),
-                padding: kMedium.all,
+                padding: kMedium.horizontal,
                 child: CountryButton(
                   isoCode: _controller.value.isoCode,
                   textStyle: _textStyle,
                   flagSize: 14,
-                  padding: kSmall.all,
+                  padding: kSmall.horizontal,
                   showDropdownIcon: false,
                   onTap: _onDialCodePressed,
                 ),
@@ -153,7 +161,5 @@ class _PhoneFieldState extends State<PhoneField> {
         isScrollControlled: true,
       );
 
-  TextStyle get _textStyle => AppTheme.currentThemeOf(context)
-      .bodyText1
-      .copyWith(color: AppTheme.currentThemeOf(context).colorScheme.secondary);
+  TextStyle get _textStyle => AppTheme.currentThemeOf(context).bodyText1;
 }

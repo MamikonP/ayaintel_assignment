@@ -10,7 +10,7 @@ import '../data/repositories/auth_respository_imp.dart';
 import '../data/repositories/user_respository_imp.dart';
 import '../domain/repositories/auth_repository.dart';
 import '../domain/repositories/user_repository.dart';
-import 'constants/aliases.dart';
+import 'constants.dart';
 
 class MainRepositoryProvider extends StatelessWidget {
   const MainRepositoryProvider({super.key, required this.builder});

@@ -14,4 +14,9 @@ extension ContextExtension on BuildContext {
   double deviceHalfWidth() => deviceFullWidth() / 2;
 
   double deviceHalfHeight() => deviceFullHeight() / 2;
+
+  double topStatusBar() => MediaQuery.viewPaddingOf(this).top;
+
+  bool currentRouteIs(String route) =>
+      ModalRoute.of(this)?.settings.name == route;
 }

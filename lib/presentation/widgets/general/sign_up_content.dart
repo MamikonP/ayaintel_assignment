@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants/gaps.dart';
+import '../../../core/constants.dart';
 import '../../../core/enums/sign_up_type.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_theme.dart';
@@ -25,7 +25,7 @@ class SignUpContent extends StatefulWidget {
 }
 
 class _SignUpContentState extends State<SignUpContent>
-    with AuthController, AutomaticKeepAliveClientMixin {
+    with AuthControllerMixin, AutomaticKeepAliveClientMixin {
   SignUpType signUpType = SignUpType.teacher;
 
   @override
@@ -158,7 +158,7 @@ class _SignUpContentState extends State<SignUpContent>
             OutlineDropDownField(
               hintText: L10n.of(context).tr.lblRegion,
               options: ['1', '2'],
-              label: 'Region',
+              label: L10n.of(context).tr.lblRegion,
               controller: regionController,
               validator: Validator.of(context).validateEmptyField,
               onChanged: (value) => context
@@ -169,7 +169,7 @@ class _SignUpContentState extends State<SignUpContent>
             OutlineDropDownField(
               hintText: L10n.of(context).tr.lblCity,
               options: ['1', '2'],
-              label: 'City',
+              label: L10n.of(context).tr.lblCity,
               controller: cityController,
               validator: Validator.of(context).validateEmptyField,
               onChanged: (value) =>
@@ -180,7 +180,7 @@ class _SignUpContentState extends State<SignUpContent>
               OutlineDropDownField(
                 hintText: L10n.of(context).tr.lblSchool,
                 options: ['1', '2'],
-                label: 'School',
+                label: L10n.of(context).tr.lblSchool,
                 controller: schoolController,
                 validator: Validator.of(context).validateEmptyField,
                 onChanged: (value) => context
@@ -191,7 +191,7 @@ class _SignUpContentState extends State<SignUpContent>
               OutlineDropDownField(
                 hintText: L10n.of(context).tr.lblSubject,
                 options: ['1', '2'],
-                label: 'Subject',
+                label: L10n.of(context).tr.lblSubject,
                 controller: subjectController,
                 validator: Validator.of(context).validateEmptyField,
                 onChanged: (value) => context
@@ -202,7 +202,7 @@ class _SignUpContentState extends State<SignUpContent>
               OutlineDropDownField(
                 hintText: L10n.of(context).tr.lblGrade,
                 options: ['1', '2'],
-                label: 'Grade',
+                label: L10n.of(context).tr.lblGrade,
                 controller: gradeController,
                 validator: Validator.of(context).validateEmptyField,
                 onChanged: (value) => context

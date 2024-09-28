@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../core/constants/gaps.dart';
-import '../../../core/constants/ui_constants.dart';
+import '../../../core/constants.dart';
 import '../../../core/enums/app_text_font_weight.dart';
 import '../../../core/extensions/app_text_font_weight_values.dart';
 import '../../../core/extensions/number_extension.dart';
@@ -166,7 +165,6 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
       isDense: true,
       hintText: widget.hintText,
       labelText: widget.labelText,
-      hintStyle: AppTheme.currentThemeOf(context).bodyText1,
       counterText: '',
       suffixIcon: widget.obscure
           ? PasswordIcon(updatePasswordVisibility, obscure)
@@ -176,7 +174,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
               child: widget.suffixIcon,
             ),
       alignLabelWithHint: true,
-      contentPadding: widget.padding ?? kLarge.all,
+      contentPadding: widget.padding ?? (kSmall + kMedium).all,
       suffixIconConstraints: const BoxConstraints(
         minHeight: kIconSize,
         minWidth: kIconSize,

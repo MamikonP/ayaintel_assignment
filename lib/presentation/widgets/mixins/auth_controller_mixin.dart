@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-mixin AuthController {
+mixin AuthControllerMixin {
   final nameController = TextEditingController();
   final surnameController = TextEditingController();
   final emailController = TextEditingController();

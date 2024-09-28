@@ -38,7 +38,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'school': instance.school,
       'subjects': instance.subjects,
       'grades': instance.grades,
-      'signUpType': _$SignUpTypeEnumMap[instance.signUpType]!,
+      'signUpType': _$SignUpTypeEnumMap[instance.signUpType],
     };
 
 const _$SignUpTypeEnumMap = {

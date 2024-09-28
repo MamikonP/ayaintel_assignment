@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../core/constants/aliases.dart';
+import '../../../../core/constants.dart';
+
 
 abstract interface class FirebaseDataSource {
   Future<UserCredential> signInWithEmailPassword(String email, String password);

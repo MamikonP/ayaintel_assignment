@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/assets_text.dart';
-import '../../../core/constants/gaps.dart';
+import '../../../core/constants.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../widgets.dart';
 

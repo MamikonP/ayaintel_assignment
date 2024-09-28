@@ -63,7 +63,13 @@ abstract class AppTheme {
 
   TextStyle get bodyText2 => TextStyle(
         color: colorScheme.secondary,
-        fontWeight: AppTextFontWeight.bold.fontWeight,
+        fontWeight: AppTextFontWeight.normal.fontWeight,
+        fontSize: 14,
+      );
+
+  TextStyle get bodyText3 => TextStyle(
+        color: colorScheme.secondary,
+        fontWeight: AppTextFontWeight.normal.fontWeight,
         fontSize: 12,
       );
 }

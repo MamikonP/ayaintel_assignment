@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants.dart';
-import '../../../core/constants/gaps.dart';
 import '../../../core/enums/app_text_font_weight.dart';
 import '../../../core/extensions/app_text_font_weight_values.dart';
+import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../l10n/l10n.dart';
@@ -25,7 +25,7 @@ mixin AuthenticationMixin {
             },
             child: Text(
               'Eng',
-              style: AppTheme.currentThemeOf(context).bodyText1.copyWith(
+              style: AppTheme.currentThemeOf(context).bodyText3.copyWith(
                     color: onLargeScaleDevice
                         ? AppTheme.currentThemeOf(context).greyScaleLight
                         : AppTheme.currentThemeOf(context).secondary,
@@ -45,7 +45,7 @@ mixin AuthenticationMixin {
           },
           child: Text(
             'Հայ',
-            style: AppTheme.currentThemeOf(context).bodyText1.copyWith(
+            style: AppTheme.currentThemeOf(context).bodyText3.copyWith(
                   color: onLargeScaleDevice
                       ? AppTheme.currentThemeOf(context).greyScaleLight
                       : AppTheme.currentThemeOf(context).secondary,
@@ -66,7 +66,7 @@ mixin AuthenticationMixin {
             },
             child: Text(
               'Рус',
-              style: AppTheme.currentThemeOf(context).bodyText1.copyWith(
+              style: AppTheme.currentThemeOf(context).bodyText3.copyWith(
                     color: onLargeScaleDevice
                         ? AppTheme.currentThemeOf(context).greyScaleLight
                         : AppTheme.currentThemeOf(context).secondary,
@@ -89,9 +89,11 @@ mixin AuthenticationMixin {
           Navigator.pushReplacementNamed(context, kSignInRoute);
         },
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               Icons.login,
+              size: 16,
               color: onLargeScaleDevice
                   ? AppTheme.currentThemeOf(context).greyScaleLight
                   : AppTheme.currentThemeOf(context).secondary,
@@ -99,7 +101,7 @@ mixin AuthenticationMixin {
             kMedium.h,
             Text(
               L10n.of(context).tr.lblSignIn,
-              style: AppTheme.currentThemeOf(context).bodyText1.copyWith(
+              style: AppTheme.currentThemeOf(context).bodyText3.copyWith(
                   color: onLargeScaleDevice
                       ? AppTheme.currentThemeOf(context).greyScaleLight
                       : AppTheme.currentThemeOf(context).secondary),
@@ -124,8 +126,9 @@ mixin AuthenticationMixin {
                 ],
               ),
             ),
-            if (ModalRoute.of(context)?.settings.name != kSignInRoute)
-              signInButton(context)
+            kLargest.v,
+            if (!context.currentRouteIs(kSignInRoute)) signInButton(context),
+            kLarge.v,
           ],
         ),
         isScrollControlled: true,
