@@ -11,6 +11,7 @@ mixin AuthControllerMixin {
   final gradeController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final searchController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final nameFormKey = GlobalKey<FormFieldState<dynamic>>();
   final surnameFormKey = GlobalKey<FormFieldState<dynamic>>();

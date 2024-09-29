@@ -1,3 +1,4 @@
+import 'package:country_provider2/country_provider2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,6 +33,7 @@ class SignUpContent extends StatefulWidget {
 class _SignUpContentState extends State<SignUpContent>
     with AuthControllerMixin, AutomaticKeepAliveClientMixin {
   SignUpType signUpType = SignUpType.teacher;
+  final countries = CountryProvider().getAllCountries();
 
   @override
   void initState() {
@@ -162,33 +164,43 @@ class _SignUpContentState extends State<SignUpContent>
               },
             ),
             kLarge.v,
-            OutlineDropDownField(
-              hintText: L10n.of(context).tr.lblRegion,
-              options: ['1', '2'],
-              label: L10n.of(context).tr.lblRegion,
-              controller: regionController,
-              validator: Validator.of(context).validateEmptyField,
-              onChanged: (value) => context
-                  .read<RegistrationBloc>()
-                  .add(UpdateRegionEvent(value)),
+            FutureBuilder(
+              future: countries,
+              builder: (context, snapshot) => OutlineDropDownField(
+                hintText: L10n.of(context).tr.lblRegion,
+                options: snapshot.data?.map((e) => e.name ?? '').toList() ?? [],
+                label: L10n.of(context).tr.lblRegion,
+                validator: Validator.of(context).validateEmptyField,
+                onChanged: (value) => context
+                    .read<RegistrationBloc>()
+                    .add(UpdateRegionEvent(value)),
+              ),
             ),
             kLarge.v,
-            OutlineDropDownField(
-              hintText: L10n.of(context).tr.lblCity,
-              options: ['1', '2'],
-              label: L10n.of(context).tr.lblCity,
-              controller: cityController,
-              validator: Validator.of(context).validateEmptyField,
-              onChanged: (value) =>
-                  context.read<RegistrationBloc>().add(UpdateCityEvent(value)),
+            // ! Simulating cities as countries reversed
+            FutureBuilder(
+              future: countries,
+              builder: (context, snapshot) => OutlineDropDownField(
+                hintText: L10n.of(context).tr.lblCity,
+                options: snapshot.data
+                        ?.map((e) => e.name ?? '')
+                        .toList()
+                        .reversed
+                        .toList() ??
+                    [],
+                label: L10n.of(context).tr.lblCity,
+                validator: Validator.of(context).validateEmptyField,
+                onChanged: (value) => context
+                    .read<RegistrationBloc>()
+                    .add(UpdateCityEvent(value)),
+              ),
             ),
             if (signUpType == SignUpType.teacher) ...[
               kLarge.v,
               OutlineDropDownField(
                 hintText: L10n.of(context).tr.lblSchool,
-                options: ['1', '2'],
+                options: kSchoolNames,
                 label: L10n.of(context).tr.lblSchool,
-                controller: schoolController,
                 validator: Validator.of(context).validateEmptyField,
                 onChanged: (value) => context
                     .read<RegistrationBloc>()
@@ -197,10 +209,10 @@ class _SignUpContentState extends State<SignUpContent>
               kLarge.v,
               OutlineDropDownField(
                 hintText: L10n.of(context).tr.lblSubject,
-                options: ['1', '2'],
+                options: kSchoolSubjects,
                 label: L10n.of(context).tr.lblSubject,
-                controller: subjectController,
                 validator: Validator.of(context).validateEmptyField,
+                selectable: true,
                 onChanged: (value) => context
                     .read<RegistrationBloc>()
                     .add(UpdateSubjectEvent([value ?? ''])),
@@ -208,10 +220,10 @@ class _SignUpContentState extends State<SignUpContent>
               kLarge.v,
               OutlineDropDownField(
                 hintText: L10n.of(context).tr.lblGrade,
-                options: ['1', '2'],
+                options: kGradeList,
                 label: L10n.of(context).tr.lblGrade,
-                controller: gradeController,
                 validator: Validator.of(context).validateEmptyField,
+                selectable: true,
                 onChanged: (value) => context
                     .read<RegistrationBloc>()
                     .add(UpdateGradeEvent([value ?? '1'])),
@@ -322,18 +334,8 @@ class SignUpBody extends StatelessWidget {
                 child: SliverFillRemaining(
                   hasScrollBody: false,
                   child: onLargeScaleDevice
-                      ? Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(
-                                maxWidth: kMaxRequiredMobileSize),
-                            child: Card(
-                              color:
-                                  AppTheme.currentThemeOf(context).background,
-                              child:
-                                  const SignUpContent(onLargeScaleDevice: true),
-                            ),
-                          ),
-                        )
+                      ? const ContentCard(
+                          widget: SignUpContent(onLargeScaleDevice: true))
                       : SignUpContent(
                           signUpType: signUpType,
                           onLargeScaleDevice: onLargeScaleDevice,

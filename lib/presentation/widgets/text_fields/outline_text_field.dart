@@ -16,6 +16,7 @@ class OutlineTextField extends StatefulWidget {
       this.labelText,
       this.hintText,
       this.suffixIcon,
+      this.prefixIcon,
       this.suffixIconPadding,
       this.prefixIconPadding,
       this.onChanged,
@@ -43,6 +44,7 @@ class OutlineTextField extends StatefulWidget {
       this.labelText,
       this.hintText,
       this.suffixIcon,
+      this.prefixIcon,
       this.suffixIconPadding,
       this.prefixIconPadding,
       this.onChanged,
@@ -68,6 +70,7 @@ class OutlineTextField extends StatefulWidget {
   final String? labelText;
   final String? hintText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final EdgeInsets? suffixIconPadding;
   final EdgeInsets? prefixIconPadding;
   final void Function(String?)? onChanged;
@@ -166,6 +169,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
       hintText: widget.hintText,
       labelText: widget.labelText,
       counterText: '',
+      prefixIcon: widget.prefixIcon,
       suffixIcon: widget.obscure
           ? PasswordIcon(updatePasswordVisibility, obscure)
           : Padding(

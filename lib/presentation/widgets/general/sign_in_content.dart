@@ -243,16 +243,7 @@ class SignInBody extends StatelessWidget {
             child: SliverFillRemaining(
               hasScrollBody: false,
               child: onLargeScaleDevice
-                  ? Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(
-                            maxWidth: kMaxRequiredMobileSize),
-                        child: Card(
-                          color: AppTheme.currentThemeOf(context).background,
-                          child: const SignInContent(),
-                        ),
-                      ),
-                    )
+                  ? const ContentCard(widget: SignInContent())
                   : const SignInContent(),
             ),
           ),
