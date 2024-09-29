@@ -16,10 +16,8 @@ class PasswordIcon extends StatelessWidget {
       padding: kMedium.right,
       child: InkWell(
         onTap: updatePasswordVisibility,
-        child: !obscure
-            ? RotatedBox(
-                quarterTurns: 2,
-                child: AssetImageWidget.svg(imageName: AssetsText.icEye))
+        child: obscure
+            ? AssetImageWidget.svg(imageName: AssetsText.icEyeHidden)
             : AssetImageWidget.svg(imageName: AssetsText.icEye),
       ),
     );

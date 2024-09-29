@@ -19,7 +19,7 @@ class DarkModeTheme extends AppTheme {
   Color get snackbarColor => const Color(0xE5252525);
 
   @override
-  Color get primary => const Color(0xFF17BF5F);
+  Color get primary => const Color(0xFF34C88A);
 
   @override
   Color get onPrimary => const Color(0xFFFFFFFF);

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants.dart';
-import '../../../core/enums/sign_up_type.dart';
 import '../../widgets.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key, required this.signUpType});
-
-  final SignUpType signUpType;
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen>
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
     with AuthenticationMixin, SingleTickerProviderStateMixin, SliversMixin {
   late final TabController _tabController;
 
@@ -38,7 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen>
                 ),
                 body: WebTabBarContent(tabController: _tabController),
               )
-            : SignUpBody(signUpType: widget.signUpType),
+            : const ForgotPasswordBody(),
       ),
     );
   }

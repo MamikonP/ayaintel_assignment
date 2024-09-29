@@ -1,7 +1,7 @@
 {
   "lblQuickEasy": "Это быстро и просто.",
   "lblWelcome": "С возвращением!",
-  "lblNextGeneration": "Поколение",
+  "lblNextGeneration": "Следующее поколение",
   "lblArmenia": "Армения",
   "lblSignUp": "Зарегистрироваться",
   "lblSignIn": "Войти",
@@ -28,9 +28,13 @@
   "lblConfirmPassword": "Подтвердить пароль",
   "lblRegisterAs": "Зарегистрироваться как",
   "lblComingSoon": "Скоро",
+  "lblRecoverPassword": "Восстановить пароль",
+  "lblEnterRecoveryCode": "Введите свой адрес электронной почты, чтобы получить код восстановления",
   "btnOK": "ОК",
   "btnRegisterDonor": "Зарегистрироваться как донор",
   "btnRegisterTeacher": "Зарегистрироваться как учитель",
+  "btnForgotPassword": "Забыли пароль?",
+  "btnSend": "Отправить",
   "@_ERROR_MESSAGES": {},
   "errorFieldRequired": "Это поле обязательно",
   "errorSpecifiedFieldRequired": "{field} обязательно",
@@ -49,5 +53,7 @@
   "errorInvalidRegion": "Регион неверно",
   "errorInvalidCity": "Город неверно",
   "errorInvalidPassword": "Пароль неверно",
-  "errorPasswordDontMatch": "Пароли не совпадают"
+  "errorPasswordDontMatch": "Пароли не совпадают",
+  "@_MESSAGES": {},
+  "msgPasswordResetEmailWasSent": "Письмо для сброса пароля отправлено"
 }

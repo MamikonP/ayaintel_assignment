@@ -28,9 +28,13 @@
   "lblConfirmPassword": "Confirm Password",
   "lblRegisterAs": "Register as a",
   "lblComingSoon": "Coming Soon",
+  "lblRecoverPassword": "Recover Password",
+  "lblEnterRecoveryCode": "Please enter your email to receive a recovery code",
   "btnOK": "Ok",
   "btnRegisterDonor": "Register as a Donor",
   "btnRegisterTeacher": "Register as a Teacher",
+  "btnForgotPassword": "Forgot Password?",
+  "btnSend": "Send",
   "@_ERROR_MESSAGES": {},
   "errorFieldRequired": "This field is required",
   "errorSpecifiedFieldRequired": "{field} is required",
@@ -49,5 +53,7 @@
   "errorInvalidRegion": "Region is not correct",
   "errorInvalidCity": "City is not correct",
   "errorInvalidPassword": "Password is not correct",
-  "errorPasswordDontMatch": "Passwords don't not match"
+  "errorPasswordDontMatch": "Passwords don't not match",
+  "@_MESSAGES": {},
+  "msgPasswordResetEmailWasSent": "Password reset email was sent"
 }

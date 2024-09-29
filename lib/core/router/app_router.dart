@@ -13,6 +13,8 @@ abstract class AppRouter {
         return SignInRoute<dynamic>(settings: settings);
       case kSignUpRoute:
         return SignUpRoute<dynamic>(settings: settings);
+      case kForgotPasswordRoute:
+        return ForgotPasswordRoute<dynamic>(settings: settings);
       default:
         throw Exception('Route not found!');
     }

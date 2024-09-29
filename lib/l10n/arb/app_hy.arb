@@ -28,9 +28,13 @@
   "lblConfirmPassword": "Հաստատել գաղտնաբառը",
   "lblRegisterAs": "Գրանցվել որպես",
   "lblComingSoon": "Շուտով",
+  "lblRecoverPassword": "Վերականգնել գաղտնաբառը",
+  "lblEnterRecoveryCode": "Խնդրում ենք մուտքագրել ձեր էլ.փոստը՝ վերականգնման կոդը ստանալու համար",
   "btnOK": "Լավ",
   "btnRegisterDonor": "Գրանցվել որպես դոնոր",
   "btnRegisterTeacher": "Գրանցվել որպես ուսուցիչ",
+  "btnForgotPassword": "Մոռացել ե՞ք գաղտնաբառը",
+  "btnSend": "Ուղարկել",
   "@_ERROR_MESSAGES": {},
   "errorFieldRequired": "Այս դաշտը պարտադիր է",
   "errorSpecifiedFieldRequired": "{field} դաշտը պարտադիր է",
@@ -49,5 +53,7 @@
   "errorInvalidRegion": "Տարածաշրջանը ճիշտ չէ",
   "errorInvalidCity": "Քաղաքը ճիշտ չէ",
   "errorInvalidPassword": "Գաղտնաբառը ճիշտ չէ",
-  "errorPasswordDontMatch": "Գաղտնաբառերը չեն համընկնում"
+  "errorPasswordDontMatch": "Գաղտնաբառերը չեն համընկնում",
+  "@_MESSAGES": {},
+  "msgPasswordResetEmailWasSent": "Գաղտնաբառի վերականգնման նամակն ուղարկվել է"
 }

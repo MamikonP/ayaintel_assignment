@@ -16,7 +16,10 @@ extension ContextExtension on BuildContext {
   double deviceHalfHeight() => deviceFullHeight() / 2;
 
   double topStatusBar() => MediaQuery.viewPaddingOf(this).top;
+  
+  double bottomMenuBar() => MediaQuery.viewPaddingOf(this).bottom;
 
-  bool currentRouteIs(String route) =>
-      ModalRoute.of(this)?.settings.name == route;
+  String? currentRouteName() => ModalRoute.of(this)?.settings.name;
+
+  bool currentRouteIs(String route) => currentRouteName() == route;
 }

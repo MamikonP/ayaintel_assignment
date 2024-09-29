@@ -13,4 +13,8 @@ class AuthRepositoryImp implements AuthRepository {
   @override
   Future<String> signUpWithEmailPassword(String email, String password) async =>
       authDataSource.signUpWithEmailPassword(email, password);
+
+  @override
+  Future<void> resetPassword(String email) async =>
+      authDataSource.resetPassword(email);
 }

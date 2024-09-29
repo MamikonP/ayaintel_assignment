@@ -5,7 +5,7 @@ import '../../../core/enums/sign_up_type.dart';
 import '../../../core/extensions/context_extension.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../l10n/l10n.dart';
-import '../../screens.dart';
+import '../../widgets.dart';
 
 class WebTabBarContent extends StatelessWidget {
   const WebTabBarContent(
@@ -32,13 +32,16 @@ class WebTabBarContent extends StatelessWidget {
         ),
       )..insert(
           0,
-          context.currentRouteIs(kSignInRoute)
-              ? const SignInBody(onLargeScaleDevice: true)
-              : SignUpBody(
-                  signUpType: signUpType,
-                  onLargeScaleDevice: true,
-                ),
-        ),
+          switch (context.currentRouteName()) {
+            kSignInRoute => const SignInBody(onLargeScaleDevice: true),
+            kSignUpRoute => SignUpBody(
+                signUpType: signUpType,
+                onLargeScaleDevice: true,
+              ),
+            kForgotPasswordRoute =>
+              const ForgotPasswordBody(onLargeScaleDevice: true),
+            _ => const SizedBox.shrink()
+          }),
     );
   }
 }

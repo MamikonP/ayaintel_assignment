@@ -22,3 +22,9 @@ class SignUpWithEmailPasswordEvent extends AuthEvent {
   final String email;
   final String password;
 }
+
+class ResetPasswordEvent extends AuthEvent {
+  const ResetPasswordEvent({required this.email});
+
+  final String email;
+}

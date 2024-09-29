@@ -18,6 +18,8 @@ final class AuthLoaded extends AuthState {
   const AuthLoaded(String userId) : super(userId: userId);
 }
 
+final class PasswordResetLinkSent extends AuthState {}
+
 final class AuthFailed extends AuthState {
   const AuthFailed(String error) : super(error: error);
 }

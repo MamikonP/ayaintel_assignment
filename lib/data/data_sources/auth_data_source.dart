@@ -4,6 +4,7 @@ import 'remote/firebase/firebase_mixin.dart';
 abstract interface class AuthDataSource {
   Future<String> signUpWithEmailPassword(String email, String password);
   Future<String> signInWithEmailPassword(String email, String password);
+  Future<void> resetPassword(String email);
 }
 
 class AuthDataSourceImp with FirebaseMixin implements AuthDataSource {
@@ -25,4 +26,8 @@ class AuthDataSourceImp with FirebaseMixin implements AuthDataSource {
         await firebaseDataSource.signUpWithEmailPassword(email, password);
     return credential.user?.uid ?? '';
   }
+
+  @override
+  Future<void> resetPassword(String email) async =>
+      firebaseDataSource.resetPassword(email);
 }

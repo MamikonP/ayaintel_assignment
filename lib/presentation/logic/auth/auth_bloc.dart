@@ -13,6 +13,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.authRepository}) : super(AuthInitial()) {
     on<SignInWithEmailPasswordEvent>(_mapSignInWithEmailPasswordEventToState);
     on<SignUpWithEmailPasswordEvent>(_mapSignUpWithEmailPasswordEventToState);
+    on<ResetPasswordEvent>(_mapResetPasswordEventToState);
   }
 
   final AuthRepository authRepository;
@@ -38,6 +39,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final userId = await authRepository.signUpWithEmailPassword(
           event.email, event.password);
       emit(AuthLoaded(userId));
+    } on FirebaseAuthException catch (e) {
+      emit(AuthFailed(e.message ?? ''));
+    } catch (e) {
+      emit(AuthFailed(e.toString()));
+    }
+  }
+
+  FutureOr<void> _mapResetPasswordEventToState(
+      ResetPasswordEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    try {
+      await authRepository.resetPassword(event.email);
+      emit(PasswordResetLinkSent());
     } on FirebaseAuthException catch (e) {
       emit(AuthFailed(e.message ?? ''));
     } catch (e) {

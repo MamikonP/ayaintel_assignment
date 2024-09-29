@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/constants.dart';
+import '../../../core/enums/app_text_font_weight.dart';
 import '../../../core/enums/sign_up_type.dart';
+import '../../../core/extensions/app_text_font_weight_values.dart';
+import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../l10n/l10n.dart';
 import '../../logic/auth/auth_bloc.dart';
+import '../../logic/user/user_bloc.dart';
+import '../../shared/snackbars.dart';
 import '../../shared/validator.dart';
 import '../../widgets.dart';
 
@@ -56,12 +60,7 @@ class _RegisterButton extends StatelessWidget {
 }
 
 class SignInContent extends StatefulWidget {
-  const SignInContent({
-    super.key,
-    this.onLargeScaleDevice = false,
-  });
-
-  final bool onLargeScaleDevice;
+  const SignInContent({super.key});
 
   @override
   State<SignInContent> createState() => _SignInContentState();
@@ -80,13 +79,15 @@ class _SignInContentState extends State<SignInContent>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              AppLocalizations.of(context).lblSignIn,
+              L10n.of(context).tr.lblSignIn,
               style: AppTheme.currentThemeOf(context).title1,
               textAlign: TextAlign.center,
             ),
             Text(
               L10n.of(context).tr.lblWelcome,
-              style: AppTheme.currentThemeOf(context).subtitle1,
+              style: AppTheme.currentThemeOf(context)
+                  .title3
+                  .copyWith(fontWeight: AppTextFontWeight.normal.fontWeight),
               textAlign: TextAlign.center,
             ),
             kLarge.v,
@@ -110,7 +111,27 @@ class _SignInContentState extends State<SignInContent>
                 passwordFormKey.currentState?.validate();
               },
             ),
-            kExtraLarge.v,
+            kMedium.v,
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                child: Text(
+                  L10n.of(context).tr.btnForgotPassword,
+                  style: AppTheme.currentThemeOf(context).bodyText1.copyWith(
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppTheme.currentThemeOf(context)
+                          .colorScheme
+                          .secondary),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    kForgotPasswordRoute,
+                  );
+                },
+              ),
+            ),
+            kLarge.v,
             BlocBuilder<AuthBloc, AuthState>(
               builder: (context, state) {
                 return AppButton(
@@ -170,7 +191,7 @@ class _SignInContentState extends State<SignInContent>
                       ),
                     ],
                   ),
-                  kExtraLarge.v,
+                  (context.bottomMenuBar() / 2).v,
                 ],
               ),
             ),
@@ -182,4 +203,62 @@ class _SignInContentState extends State<SignInContent>
 
   @override
   bool get wantKeepAlive => true;
+}
+
+class SignInBody extends StatelessWidget {
+  const SignInBody({
+    super.key,
+    this.onLargeScaleDevice = false,
+  });
+
+  final bool onLargeScaleDevice;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        if (!onLargeScaleDevice)
+          CustomAppBar(onLargeScaleDevice: onLargeScaleDevice)
+        else
+          SliverToBoxAdapter(child: (kToolbarHeight * 2).v),
+        BlocListener<UserBloc, UserState>(
+          listener: (context, state) {
+            if (state is UserFailed && state.error != null) {
+              CustomSnackbar.of(context).showErrorSnackBar(state.error!);
+            } else if (state is UserLoaded) {
+              CustomSnackbar.of(context).showSuccessSnackBar(
+                  'Logged in as ${state.userEntity?.firstname}\n${state.userEntity?.id}');
+            }
+          },
+          child: BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state is AuthFailed && state.error != null) {
+                CustomSnackbar.of(context).showErrorSnackBar(state.error!);
+              } else if (state is AuthLoaded) {
+                context.read<UserBloc>().add(
+                      GetUserEvent(userId: state.userId ?? ''),
+                    );
+              }
+            },
+            child: SliverFillRemaining(
+              hasScrollBody: false,
+              child: onLargeScaleDevice
+                  ? Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                            maxWidth: kMaxRequiredMobileSize),
+                        child: Card(
+                          color: AppTheme.currentThemeOf(context).background,
+                          child: const SignInContent(),
+                        ),
+                      ),
+                    )
+                  : const SignInContent(),
+            ),
+          ),
+        ),
+        if (onLargeScaleDevice) SliverToBoxAdapter(child: kLarge.v),
+      ],
+    );
+  }
 }
