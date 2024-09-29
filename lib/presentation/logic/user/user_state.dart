@@ -20,6 +20,10 @@ final class UserLoaded extends UserState {
   const UserLoaded(UserEntity? userEntity) : super(userEntity: userEntity);
 }
 
+final class UserLoggedIn extends UserState {
+  const UserLoggedIn(UserEntity? userEntity) : super(userEntity: userEntity);
+}
+
 final class UserFailed extends UserState {
   UserFailed(UserState initState, String error)
       : super(userEntity: initState.userEntity, error: error);

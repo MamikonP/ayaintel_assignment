@@ -302,9 +302,11 @@ class SignUpBody extends StatelessWidget {
                 if (state is UserFailed && state.error != null) {
                   CustomSnackbar.of(context).showErrorSnackBar(state.error!);
                 } else if (state is UserLoaded) {
-                  CustomSnackbar.of(context).showSuccessSnackBar(
-                      'Signed up as ${state.userEntity?.firstname}\n${state.userEntity?.id}');
-                  Navigator.pushReplacementNamed(context, kSignInRoute);
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    kProfileRoute,
+                    (route) => false,
+                  );
                 }
               },
               child: BlocListener<AuthBloc, AuthState>(

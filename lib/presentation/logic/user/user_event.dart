@@ -18,3 +18,5 @@ class GetUserEvent extends UserEvent {
 
   final String userId;
 }
+
+class GetLoggedInUserEvent extends UserEvent {}

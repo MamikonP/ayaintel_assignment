@@ -26,14 +26,15 @@ class MainRepositoryProvider extends StatelessWidget {
               firestore: FirebaseFirestore.instance,
             ),
           ),
-          RepositoryProvider<AuthDataSource>(
-            create: (context) => AuthDataSourceImp(
-              firebaseDataSource: RepositoryProvider.of(context),
-            ),
-          ),
           RepositoryProvider<UserDataSource>(
             create: (context) => UserDataSourceImp(
               firebaseDataSource: RepositoryProvider.of(context),
+            ),
+          ),
+          RepositoryProvider<AuthDataSource>(
+            create: (context) => AuthDataSourceImp(
+              firebaseDataSource: RepositoryProvider.of(context),
+              userDataSource: RepositoryProvider.of(context),
             ),
           ),
           RepositoryProvider<AuthRepository>(

@@ -112,7 +112,6 @@ class _OutlineDropDownFieldState extends State<OutlineDropDownField>
               onChanged: (String? newValue) {
                 onFieldUpdated(newValue);
               },
-              isDense: false,
               iconStyleData: IconStyleData(
                 icon: const Icon(Icons.keyboard_arrow_down_sharp),
                 iconEnabledColor: AppTheme.currentThemeOf(context).secondary,

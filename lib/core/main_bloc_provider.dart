@@ -16,7 +16,11 @@ class MainBlocProvider extends StatelessWidget {
           create: (context) => LocaleCubit(),
         ),
         BlocProvider<UserBloc>(
-          create: (context) => UserBloc(RepositoryProvider.of(context)),
+          lazy: false,
+          create: (context) => UserBloc(
+            userRepository: RepositoryProvider.of(context),
+            authRepository: RepositoryProvider.of(context),
+          )..add(GetLoggedInUserEvent()),
         ),
       ], child: child);
 }

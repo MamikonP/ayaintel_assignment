@@ -14,6 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInWithEmailPasswordEvent>(_mapSignInWithEmailPasswordEventToState);
     on<SignUpWithEmailPasswordEvent>(_mapSignUpWithEmailPasswordEventToState);
     on<ResetPasswordEvent>(_mapResetPasswordEventToState);
+    on<LogoutEvent>(_mapLogoutEventToState);
   }
 
   final AuthRepository authRepository;
@@ -54,6 +55,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(PasswordResetLinkSent());
     } on FirebaseAuthException catch (e) {
       emit(AuthFailed(e.message ?? ''));
+    } catch (e) {
+      emit(AuthFailed(e.toString()));
+    }
+  }
+
+  FutureOr<void> _mapLogoutEventToState(
+      LogoutEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    try {
+      await authRepository.logout();
+      emit(LoggedOut());
     } catch (e) {
       emit(AuthFailed(e.toString()));
     }

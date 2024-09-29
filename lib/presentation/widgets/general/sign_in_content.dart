@@ -226,8 +226,11 @@ class SignInBody extends StatelessWidget {
             if (state is UserFailed && state.error != null) {
               CustomSnackbar.of(context).showErrorSnackBar(state.error!);
             } else if (state is UserLoaded) {
-              CustomSnackbar.of(context).showSuccessSnackBar(
-                  'Logged in as ${state.userEntity?.firstname}\n${state.userEntity?.id}');
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                kProfileRoute,
+                (route) => false,
+              );
             }
           },
           child: BlocListener<AuthBloc, AuthState>(

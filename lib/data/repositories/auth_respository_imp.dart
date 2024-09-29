@@ -1,3 +1,4 @@
+import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../data_sources/auth_data_source.dart';
 
@@ -17,4 +18,13 @@ class AuthRepositoryImp implements AuthRepository {
   @override
   Future<void> resetPassword(String email) async =>
       authDataSource.resetPassword(email);
+
+  @override
+  Future<void> logout() async => authDataSource.logout();
+
+  @override
+  Future<UserEntity?> getLoggedInUser() async {
+    final user = await authDataSource.getLoggedinUser();
+    return user?.toEntity();
+  }
 }

@@ -47,78 +47,72 @@ class _PhoneFieldState extends State<PhoneField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Theme(
-          data: ThemeData(
-            bottomSheetTheme: BottomSheetThemeData(
-              modalBackgroundColor:
-                  AppTheme.currentThemeOf(context).greyScaleLight,
-            ),
+    return Theme(
+      data: ThemeData(
+        bottomSheetTheme: BottomSheetThemeData(
+          modalBackgroundColor: AppTheme.currentThemeOf(context).greyScaleLight,
+        ),
+      ),
+      child: Center(
+        child: PhoneFormField(
+          controller: _controller,
+          focusNode: _focusNode,
+          isCountryButtonPersistent: false,
+          isCountrySelectionEnabled: false,
+          countryButtonStyle: CountryButtonStyle(
+            textStyle: _textStyle,
+            showFlag: false,
+            showDialCode: false,
+            showDropdownIcon: false,
           ),
-          child: PhoneFormField(
-            controller: _controller,
-            focusNode: _focusNode,
-            isCountryButtonPersistent: false,
-            isCountrySelectionEnabled: false,
-            countryButtonStyle: CountryButtonStyle(
-              textStyle: _textStyle,
-              showFlag: false,
-              showDialCode: false,
-              showDropdownIcon: false,
-            ),
-            textInputAction: widget.textInputAction,
-            decoration: DefaultDecoration.of(context).copyWith(
-              contentPadding: EdgeInsets.zero,
-              prefixIcon: Container(
-                margin: kMedium.right,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(kBorderRadius),
-                    bottomLeft: Radius.circular(kBorderRadius),
-                  ),
-                  border: Border(
-                    right: BorderSide(
-                        width: kBorderWidth,
-                        color: AppTheme.currentThemeOf(context).borderColor),
-                  ),
+          textInputAction: widget.textInputAction,
+          decoration: DefaultDecoration.of(context).copyWith(
+            contentPadding: EdgeInsets.zero,
+            prefixIcon: Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(kBorderRadius),
+                  bottomLeft: Radius.circular(kBorderRadius),
                 ),
-                padding: kMedium.horizontal,
-                child: CountryButton(
-                  isoCode: _controller.value.isoCode,
-                  textStyle: _textStyle,
-                  flagSize: 14,
-                  padding: kSmall.horizontal,
-                  showDropdownIcon: false,
-                  onTap: _onDialCodePressed,
+                border: Border(
+                  right: BorderSide(
+                      width: kBorderWidth,
+                      color: AppTheme.currentThemeOf(context).borderColor),
                 ),
               ),
-              hintText: widget.hintText,
-              hintStyle: AppTheme.currentThemeOf(context).bodyText1,
-              alignLabelWithHint: true,
+              child: CountryButton(
+                isoCode: _controller.value.isoCode,
+                textStyle: _textStyle,
+                flagSize: 14,
+                padding: kLarge.horizontal,
+                showDropdownIcon: false,
+                onTap: _onDialCodePressed,
+              ),
             ),
-            validator: widget.validator ??
-                PhoneValidator.compose(<PhoneNumberInputValidator>[
-                  PhoneValidator.required(context),
-                  PhoneValidator.validMobile(context),
-                ]),
-            autofillHints: const <String>[AutofillHints.telephoneNumber],
-            onSaved: (PhoneNumber? p) {},
-            onChanged: (PhoneNumber? value) {
-              if (value != null && value.isoCode != _isoCode) {
-                setState(() {
-                  _isoCode = value.isoCode;
-                  _controller.value = PhoneNumber(isoCode: _isoCode, nsn: '');
-                });
-              }
-              widget.onChanged?.call(value);
-            },
-            textAlignVertical: TextAlignVertical.center,
-            style: _textStyle,
+            hintText: widget.hintText,
+            hintStyle: AppTheme.currentThemeOf(context).bodyText1,
+            alignLabelWithHint: true,
           ),
+          validator: widget.validator ??
+              PhoneValidator.compose(<PhoneNumberInputValidator>[
+                PhoneValidator.required(context),
+                PhoneValidator.validMobile(context),
+              ]),
+          autofillHints: const <String>[AutofillHints.telephoneNumber],
+          onSaved: (PhoneNumber? p) {},
+          onChanged: (PhoneNumber? value) {
+            if (value != null && value.isoCode != _isoCode) {
+              setState(() {
+                _isoCode = value.isoCode;
+                _controller.value = PhoneNumber(isoCode: _isoCode, nsn: '');
+              });
+            }
+            widget.onChanged?.call(value);
+          },
+          textAlignVertical: TextAlignVertical.center,
+          style: _textStyle,
         ),
-      ],
+      ),
     );
   }
 
